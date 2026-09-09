@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- 纸白 / 朱红（浅色）· 图形等比放大 1.42× —— 底色与描边不参与缩放 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F7F2E7"/>
+      <stop offset="1" stop-color="#EDE6D6"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="29" fill="url(#bg)"/>
+  <rect x="1.75" y="1.75" width="124.5" height="124.5" rx="27.25" fill="none" stroke="#1B1C20" stroke-opacity="0.14" stroke-width="3.5"/>
+  <!-- 原图形外接框 x35..104 / y36.5..91.5，中心 (69.5,64)；缩放同时回正到画布中心 -->
+  <g transform="translate(64 64) scale(1.42) translate(-69.5 -64)">
+    <path d="M35 36.5 L35 91.5 L66 64 Z" fill="#E5322D"/>
+    <rect x="74" y="46" width="30" height="8" rx="4" fill="#1B1C20"/>
+    <rect x="74" y="60" width="24" height="8" rx="4" fill="#1B1C20" opacity="0.72"/>
+    <rect x="74" y="74" width="16" height="8" rx="4" fill="#1B1C20" opacity="0.44"/>
+  </g>
+</svg>

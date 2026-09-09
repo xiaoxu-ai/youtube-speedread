@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- C @16px：去掉底部字幕短线，「读」占满字幕框 -->
+  <rect width="128" height="128" rx="26" fill="#FF2D46"/>
+  <rect x="12" y="20" width="104" height="88" rx="16" fill="#FFFFFF"/>
+  <text x="64" y="65" text-anchor="middle" dominant-baseline="central"
+        font-family="'PingFang SC','Hiragino Sans GB','Heiti SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif"
+        font-size="78" font-weight="600" fill="#1B1C20">读</text>
+</svg>

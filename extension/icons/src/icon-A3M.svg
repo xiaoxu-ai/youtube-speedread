@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- 纸白 / 朱红（浅色）· 混合放大：播放键 1.30×、文字列 1.42×
+       两组分别缩放后重新排布，整体横向居中、间距 11、共宽 93.9（两侧留白 17） -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F7F2E7"/>
+      <stop offset="1" stop-color="#EDE6D6"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="29" fill="url(#bg)"/>
+  <rect x="1.75" y="1.75" width="124.5" height="124.5" rx="27.25" fill="none" stroke="#1B1C20" stroke-opacity="0.14" stroke-width="3.5"/>
+
+  <!-- 播放键：原中心 (50.5,64) → 落到 (37.2,64) -->
+  <g transform="translate(37.2 64) scale(1.30) translate(-50.5 -64)">
+    <path d="M35 36.5 L35 91.5 L66 64 Z" fill="#E5322D"/>
+  </g>
+  <!-- 文字列：原中心 (89,64) → 落到 (89.65,64) -->
+  <g transform="translate(89.65 64) scale(1.42) translate(-89 -64)">
+    <rect x="74" y="46" width="30" height="8" rx="4" fill="#1B1C20"/>
+    <rect x="74" y="60" width="24" height="8" rx="4" fill="#1B1C20" opacity="0.72"/>
+    <rect x="74" y="74" width="16" height="8" rx="4" fill="#1B1C20" opacity="0.44"/>
+  </g>
+</svg>

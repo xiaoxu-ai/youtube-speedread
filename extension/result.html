@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>油管速读 — 结果</title>
+  <style>
+    /* ─────────────────────────────────────────────
+       配色取自 A3 图标：纸白底 / 墨字 / 朱红点缀。
+       朱红比图标里的 #E5322D 略压暗，保证文字对比度达标。
+       ───────────────────────────────────────────── */
+    :root {
+      --paper:    #FAF6EC;
+      --paper-2:  #F3ECDD;
+      --ink:      #1B1C20;
+      --ink-soft: #6B675E;
+      --ink-faint:#918C81;
+      --rule:     #E0D7C3;
+      --vermil:   #C9372A;
+      --vermil-2: #A82B20;
+      --shadow:   rgba(60, 45, 20, .07);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper:    #16171A;
+        --paper-2:  #1E2025;
+        --ink:      #EDE6D6;
+        --ink-soft: #9C968A;
+        --ink-faint:#77726A;
+        --rule:     #32343A;
+        --vermil:   #FF6152;
+        --vermil-2: #FF8375;
+        --shadow:   rgba(0, 0, 0, .3);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.8;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+                   "Hiragino Sans GB", "Segoe UI", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── 顶栏 ── */
+    .toolbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; gap: 10px; align-items: center;
+      padding: 12px 28px;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .toolbar .t {
+      flex: 1; min-width: 0;
+      font-size: 13.5px; font-weight: 600; letter-spacing: .1px;
+      color: var(--ink-soft);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    button {
+      padding: 7px 15px; border-radius: 7px; cursor: pointer;
+      font-size: 13px; font-weight: 600; white-space: nowrap;
+      border: 1.5px solid var(--vermil);
+      background: var(--vermil); color: var(--paper);
+      transition: background .15s, color .15s, border-color .15s;
+      font-family: inherit;
+    }
+    button:hover { background: var(--vermil-2); border-color: var(--vermil-2); }
+    button.ghost { background: transparent; color: var(--vermil); }
+    button.ghost:hover { background: color-mix(in srgb, var(--vermil) 10%, transparent); color: var(--vermil); }
+
+    /* ── 版心 ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 28px 120px;
+    }
+
+    h1 {
+      font-size: 30px; line-height: 1.3; font-weight: 700;
+      letter-spacing: -.2px; margin: 0 0 20px;
+    }
+
+    /* 视频信息卡 */
+    .facts {
+      margin: 0; padding: 3px 0;
+      font-size: 13.5px; line-height: 1.9; color: var(--ink-soft);
+    }
+    .facts strong { color: var(--ink); font-weight: 600; }
+    .facts a { color: var(--vermil); }
+
+    hr {
+      border: 0; height: 1px; background: var(--rule);
+      margin: 30px 0;
+    }
+
+    /* 章节标题：朱红短横 + 墨色标题 */
+    h2 {
+      position: relative;
+      font-size: 20px; font-weight: 700; letter-spacing: -.1px;
+      margin: 46px 0 18px; padding-top: 14px;
+    }
+    h2::before {
+      content: ""; position: absolute; top: 0; left: 0;
+      width: 34px; height: 3px; border-radius: 2px;
+      background: var(--vermil);
+    }
+
+    ul { margin: 14px 0; padding-left: 4px; list-style: none; }
+    li {
+      position: relative; margin: 10px 0; padding-left: 20px;
+    }
+    li::before {
+      content: ""; position: absolute; left: 2px; top: .72em;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--vermil); opacity: .85;
+    }
+
+    p { margin: 12px 0; }
+    strong { font-weight: 650; }
+    a { color: var(--vermil); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+    /* ── 主题拆解：h3 是话题标题 ── */
+    h3 {
+      margin: 38px 0 14px; padding: 14px 16px;
+      font-size: 17px; font-weight: 700; line-height: 1.5;
+      background: var(--paper-2); border-radius: 10px;
+      border-left: 3px solid var(--vermil);
+    }
+    h3 a {
+      font-size: 12.5px; font-weight: 600; color: var(--vermil);
+      text-decoration: none; margin-left: 8px; white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    h3 a:hover { text-decoration: underline; }
+
+    /* 话题里的字段名：讲了什么 / 要点 */
+    .lbl.field {
+      margin: 20px 0 6px; font-size: 12.5px; font-weight: 700;
+      letter-spacing: .3px; text-transform: none; color: var(--vermil);
+    }
+    .lbl.field::before {
+      content: "▸ "; opacity: .7;
+    }
+
+    /* ── 双语全文：h4 是时间戳徽章 ── */
+    h4 {
+      margin: 36px 0 12px; font-size: 12px; font-weight: 700;
+      letter-spacing: .5px; font-variant-numeric: tabular-nums;
+    }
+    h4 a {
+      display: inline-block; padding: 3px 9px; border-radius: 5px;
+      background: var(--paper-2); color: var(--vermil);
+      text-decoration: none; border: 1px solid var(--rule);
+      transition: background .15s, border-color .15s;
+    }
+    h4 a:hover { background: var(--vermil); color: var(--paper); border-color: var(--vermil); }
+
+    .lbl {
+      margin: 16px 0 5px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--ink-faint);
+    }
+
+    /* 原文：退到次要层级，左侧一道细线表示「引文」 */
+    .seg.orig {
+      margin: 0 0 4px; padding-left: 14px;
+      border-left: 2px solid var(--rule);
+      font-size: 14px; line-height: 1.72; color: var(--ink-soft);
+    }
+    /* 译文：正文主体，字号和行距都放宽 */
+    .seg.zh {
+      margin: 0; font-size: 16.5px; line-height: 1.85; color: var(--ink);
+    }
+
+    .empty, .error {
+      margin-top: 70px; text-align: center;
+      font-size: 15px; color: var(--ink-soft);
+    }
+    .error { color: var(--vermil); }
+
+    @media (max-width: 620px) {
+      main { padding: 28px 18px 90px; }
+      h1 { font-size: 24px; }
+      .toolbar { padding: 10px 16px; }
+      .toolbar .t { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div class="t" id="pageTitle">油管速读</div>
+    <button id="btnCopy" class="ghost">复制 Markdown</button>
+    <button id="btnDownload">下载 .md</button>
+  </div>
+  <main id="content"><div class="empty">加载中…</div></main>
+  <script src="result.js"></script>
+</body>
+</html>

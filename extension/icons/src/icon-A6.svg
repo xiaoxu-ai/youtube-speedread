@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- 深墨绿 / 麦金 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A3A2C"/>
+      <stop offset="1" stop-color="#0E241B"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="29" fill="url(#bg)"/>
+  <rect x="1.75" y="1.75" width="124.5" height="124.5" rx="27.25" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="3.5"/>
+  <path d="M35 36.5 L35 91.5 L66 64 Z" fill="#E8B84B"/>
+  <rect x="74" y="46" width="30" height="8" rx="4" fill="#EFE9D6"/>
+  <rect x="74" y="60" width="24" height="8" rx="4" fill="#EFE9D6" opacity="0.72"/>
+  <rect x="74" y="74" width="16" height="8" rx="4" fill="#EFE9D6" opacity="0.44"/>
+</svg>

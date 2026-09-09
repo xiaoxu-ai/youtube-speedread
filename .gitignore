@@ -1,0 +1,39 @@
+# ── macOS / 编辑器垃圾 ──
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/
+*.code-workspace
+
+# Synology Drive / macOS 文件夹元数据；保留在本机，不属于项目源码。
+.sync/
+Icon?
+
+# Local-only project archive. Never commit or push these files.
+.internal/
+
+# ── 图标构建产物 ──
+# variant-*.png 是 icons/build.sh 从 src/*.svg 生成的，随时可以重建，不进版本库。
+# 但 icon16/48/128.png 必须提交（插件运行时要用），
+# .current 也必须提交（记录当前用的是哪套配色，保证别人 clone 下来图标一致）。
+extension/icons/variant-*.png
+
+# ── 本地调试残留 ──
+# 用 --user-data-dir 起的临时 Chrome 配置、mock 服务日志之类
+cprof*/
+*.log
+node_modules/
+
+# ── 千万别提交的东西 ──
+# 这个项目本身不读 .env，但万一将来加了，先挡住，
+# 免得把 API Key 推上公开仓库。
+.env
+.env.*
+*.key
+secrets.json

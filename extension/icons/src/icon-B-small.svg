@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- B @16px：去掉文字线，加粗轮廓，放大播放键 -->
+  <rect width="128" height="128" rx="26" fill="#F4EFE4"/>
+  <path d="M16 34 C32 25 52 26 62 34 L62 98 C52 90 32 89 16 98 Z"
+        fill="#FFFFFF" stroke="#1B1C20" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M112 34 C96 25 76 26 66 34 L66 98 C76 90 96 89 112 98 Z"
+        fill="#FFFFFF" stroke="#1B1C20" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="89" cy="64" r="21" fill="#FF2D46"/>
+  <path d="M83 54 L83 74 L98 64 Z" fill="#FFFFFF"/>
+</svg>

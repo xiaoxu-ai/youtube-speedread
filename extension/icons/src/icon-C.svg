@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- C: 字幕框 + 「读」 —— 工具属性最强 -->
+  <rect width="128" height="128" rx="29" fill="#FF2D46"/>
+
+  <!-- 字幕框 -->
+  <rect x="20" y="26" width="88" height="66" rx="13"
+        fill="#FFFFFF"/>
+
+  <!-- 「读」字 -->
+  <text x="64" y="60" text-anchor="middle" dominant-baseline="central"
+        font-family="'PingFang SC','Hiragino Sans GB','Heiti SC','Noto Sans CJK SC','Source Han Sans SC',sans-serif"
+        font-size="46" font-weight="600" fill="#1B1C20">读</text>
+
+  <!-- 框下方的字幕短线，暗示这是字幕 -->
+  <rect x="38" y="101" width="30" height="7" rx="3.5" fill="#FFFFFF" opacity="0.95"/>
+  <rect x="74" y="101" width="16" height="7" rx="3.5" fill="#FFFFFF" opacity="0.6"/>
+</svg>

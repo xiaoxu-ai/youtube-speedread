@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- B: 摊开的书 + 播放键 —— 把视频当书读 -->
+  <rect width="128" height="128" rx="29" fill="#F4EFE4"/>
+
+  <!-- 左页 -->
+  <path d="M20 39 C34 32 52 33 62 40 L62 94 C52 87 34 86 20 93 Z"
+        fill="#FFFFFF" stroke="#1B1C20" stroke-width="5" stroke-linejoin="round"/>
+  <!-- 右页 -->
+  <path d="M108 39 C94 32 76 33 66 40 L66 94 C76 87 94 86 108 93 Z"
+        fill="#FFFFFF" stroke="#1B1C20" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- 左页文字线 -->
+  <rect x="30" y="50" width="24" height="5" rx="2.5" fill="#1B1C20" opacity="0.28"/>
+  <rect x="30" y="61" width="24" height="5" rx="2.5" fill="#1B1C20" opacity="0.28"/>
+  <rect x="30" y="72" width="17" height="5" rx="2.5" fill="#1B1C20" opacity="0.28"/>
+
+  <!-- 右页：红色播放键 -->
+  <circle cx="87" cy="63" r="16.5" fill="#FF2D46"/>
+  <path d="M82.5 55.5 L82.5 70.5 L94.5 63 Z" fill="#FFFFFF"/>
+</svg>

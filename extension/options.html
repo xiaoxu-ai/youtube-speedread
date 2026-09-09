@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>油管速读 — 设置</title>
+  <style>
+    * { box-sizing: border-box; }
+    /* 配色与 A3 图标一致：纸白 / 墨 / 朱红 */
+    :root {
+      --red: #C9372A; --red-2: #A82B20; --ink: #1B1C20; --muted: #6B675E;
+      --line: #E0D7C3; --bg: #F5EFE1; --card: #FAF6EC;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --red: #FF6152; --red-2: #FF8375; --ink: #EDE6D6; --muted: #9C968A; --line: #32343A; --bg: #131417; --card: #1C1E22; }
+    }
+    body {
+      max-width: 680px; margin: 40px auto 80px; padding: 0 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+      font-size: 14px; color: var(--ink); background: var(--bg);
+    }
+    h1 { font-size: 22px; margin: 0 0 6px; display: flex; align-items: center; gap: 10px; }
+    h1 img { width: 30px; height: 30px; border-radius: 7px; }
+    .sub { color: var(--muted); margin: 0 0 24px; font-size: 13px; }
+    .card {
+      background: var(--card); border-radius: 12px; padding: 24px;
+      border: 1px solid var(--line); margin-bottom: 18px;
+    }
+    .card h2 { font-size: 14px; margin: 0 0 18px; color: var(--muted); font-weight: 600; letter-spacing: .3px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px; }
+    input, select {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--line);
+      border-radius: 7px; font-size: 14px; background: var(--bg); color: var(--ink);
+    }
+    input:focus, select:focus { outline: none; border-color: var(--red); }
+    .hint { color: var(--muted); font-size: 12px; margin: 6px 0 18px; line-height: 1.55; }
+    .row { display: flex; gap: 14px; }
+    .row > div { flex: 1; }
+    label.check {
+      display: flex; align-items: center; gap: 9px;
+      margin: 18px 0 6px; font-weight: 600; cursor: pointer;
+    }
+    label.check input { width: auto; margin: 0; accent-color: var(--red); }
+    .actions { display: flex; gap: 10px; align-items: center; }
+    button {
+      padding: 10px 20px; border: none; border-radius: 7px; background: var(--red);
+      color: #fff; font-size: 14px; font-weight: 600; cursor: pointer;
+    }
+    button:hover { background: var(--red-2); }
+    button.ghost { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
+    button:disabled { opacity: .55; cursor: default; }
+    /* 自动探测路径会输出多行，必须保留换行 */
+    #status { margin-top: 16px; padding: 11px 13px; border-radius: 7px; display: none; line-height: 1.55; font-size: 13px; white-space: pre-wrap; word-break: break-word; }
+    #status.success { background: rgba(31,122,72,.12); color: #1F7A48; display: block; }
+    #status.error { background: rgba(201,55,42,.10); color: var(--red); display: block; }
+    #status.info { background: rgba(107,103,94,.10); color: var(--muted); display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-weight: 600; }
+    code { background: var(--bg); padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1><img src="icons/icon128.png" alt="" />油管速读 设置</h1>
+  <p class="sub">填一个 OpenAI 兼容接口（<code>/v1/chat/completions</code>）就能用。</p>
+
+  <div class="card">
+    <h2>AI 接口</h2>
+
+    <label for="apiBaseUrl">API Base URL</label>
+    <input id="apiBaseUrl" type="text" placeholder="https://api.openai.com/v1" spellcheck="false" />
+    <p class="hint">填到 <code>/v1</code> 为止就行，后面的 <code>/chat/completions</code> 插件会自己接上。</p>
+
+    <label for="apiKey">API Key</label>
+    <input id="apiKey" type="password" placeholder="sk-..." spellcheck="false" />
+    <p class="hint">保存在浏览器本地（<code>storage.sync</code>），只会发给你自己填的这个接口。</p>
+
+    <label for="model">模型名</label>
+    <input id="model" type="text" placeholder="deepseek-v4-flash" spellcheck="false" />
+    <p class="hint">
+      建议选上下文和输出都比较大的模型，长视频更稳。<br />
+      <strong>翻译任务优先选「非推理」模型</strong>（如 <code>deepseek-v4-flash</code>），
+      推理模型（<code>deepseek-v4-pro</code>、<code>glm-5.1</code> 等）会先花大量 token 内部思考，又慢又贵。
+    </p>
+
+    <div class="actions">
+      <button id="btnSave">保存设置</button>
+      <button id="btnTest" class="ghost">测试连接</button>
+    </div>
+    <div id="status"></div>
+  </div>
+
+  <div class="card">
+    <h2>翻译参数</h2>
+    <div class="row">
+      <div>
+        <label for="temperature">Temperature</label>
+        <input id="temperature" type="number" min="0" max="2" step="0.1" placeholder="0.3" />
+        <p class="hint">0 最死板，1 以上会开始发挥。翻译建议 0～0.5。</p>
+      </div>
+      <div>
+        <label for="maxTokens">单次最大输出 tokens</label>
+        <input id="maxTokens" type="number" min="512" max="32000" step="256" placeholder="8192" />
+        <p class="hint">太小会把译文切断。不够时插件会自动加大重试。</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="chunkChars">每块字符数</label>
+        <input id="chunkChars" type="number" min="800" max="8000" step="100" placeholder="2400" />
+        <p class="hint">字幕会切成小块分别翻译，避免一次性输出被截断。</p>
+      </div>
+      <div>
+        <label for="concurrency">并发块数</label>
+        <input id="concurrency" type="number" min="1" max="8" step="1" placeholder="3" />
+        <p class="hint">越大越快，但容易触发接口限流。被限流就调回 1～2。</p>
+      </div>
+    </div>
+
+    <label for="preferredLang">优先字幕语言</label>
+    <select id="preferredLang">
+      <option value="auto">自动（人工字幕优先，其次自动字幕）</option>
+      <option value="en">英语 en</option>
+      <option value="zh-Hans">简体中文 zh-Hans</option>
+      <option value="zh-Hant">繁体中文 zh-Hant</option>
+      <option value="ja">日语 ja</option>
+      <option value="ko">韩语 ko</option>
+      <option value="es">西班牙语 es</option>
+      <option value="fr">法语 fr</option>
+      <option value="de">德语 de</option>
+    </select>
+    <p class="hint">视频有多条字幕轨道时用哪条。选的语言不存在就自动回退。</p>
+
+    <label class="check">
+      <input id="disableThinking" type="checkbox" />
+      <span>关闭模型的思考模式</span>
+    </label>
+    <p class="hint">
+      GLM、Qwen 这类模型默认开着「思考」，会先花掉大量 token 做内部推理，
+      正文还没开始写额度就用完了 —— 表现就是「AI 返回内容为空」。
+      翻译不需要推理，建议保持勾选。<br />
+      只会对识别得出的模型生效（模型名含 glm / qwen / deepseek / kimi-k 等），
+      OpenAI 之类的接口不会收到这个参数。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>常见接口</h2>
+    <table>
+      <tr><th>服务商</th><th>Base URL</th><th>模型示例</th></tr>
+      <tr><td>OpenAI</td><td><code>https://api.openai.com/v1</code></td><td><code>gpt-4o-mini</code></td></tr>
+      <tr><td>DeepSeek</td><td><code>https://api.deepseek.com/v1</code></td><td><code>deepseek-v4-flash</code></td></tr>
+      <tr><td>Moonshot</td><td><code>https://api.moonshot.cn/v1</code></td><td><code>moonshot-v1-32k</code></td></tr>
+      <tr><td>z.ai（国际版）</td><td><code>https://api.z.ai/api/paas/v4</code></td><td><code>glm-5.1</code></td></tr>
+      <tr><td>智谱（国内）</td><td><code>https://open.bigmodel.cn/api/paas/v4</code></td><td><code>glm-4-flash</code></td></tr>
+    </table>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
